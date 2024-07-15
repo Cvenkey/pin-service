@@ -1,0 +1,39 @@
+<div class="row my-3 justify-content-center">
+    <label for="search-pincode" class="col-md-2 col-form-label isp-pincode-label fw-bold">PIN Code</label>
+	<div class="col-md-3 mb-3 mb-md-0">
+         <input type="text" class="form-control" [(ngModel)]="pincode"  minlength="6" maxlength="6"  placeholder="Enter Pincode">
+	</div>
+	<div class="col-md-2">
+    <button class="btn-primary" (click)="searchPincode()">Search</button>
+	</div>
+</div>
+<div *ngIf="responseData">
+    <p class="center-block">{{ responseData.Message }}</p>
+    <table class="center-block">
+            <tr>
+              <th>Name</th>
+              <th>Disttrict</th>
+              <th>Region</th>
+              <th>State</th>
+              <th>Country</th>
+              <th>Pincode</th>
+              <th>Select</th>
+            </tr>
+            <tr *ngFor="let office of responseData.PostOffice; let i = index">
+               <td>{{ office.Name }}</td>
+               <td>{{ office.District}}</td>
+               <td>{{ office.Region }}</td>
+               <td>{{ office.State }}</td>
+               <td>{{ office.Country }}</td>
+               <td>{{ office.Pincode }}</td>
+               <td>
+                <input type="checkbox" id="{{ 'chk-' + i }}" [(ngModel)]="selectedItems[i]">
+               </td>
+            </tr>
+    </table>
+    <div class="center-block" style="padding-top: 2%">
+        <button class="btn-primary"  type="button" (click)="submitSelected()">Want to Save Selected Result(s)</button>
+    </div>
+</div>
+    
+      

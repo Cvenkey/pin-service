@@ -1,0 +1,66 @@
+
+<body ng-app="">
+  <div>
+    <div class="row my-3 justify-content-center">
+        <div class="col-md-3 mb-3 mb-md-0">
+            <input type="text" class="form-control" placeholder="Enter UserId" [(ngModel)]="userId" id="usrId">
+        </div>
+        <div class="col-md-2">
+            <button class="btn-primary" (click)="saveTodos()">Save</button>
+        </div>
+    </div>
+    <div *ngIf="selectedItems">
+        <table class="center-block">
+          <tr>
+            <th>Name</th>
+            <th>Disttrict</th>
+            <th>Region</th>
+            <th>State</th>
+            <th>Country</th>
+            <th>Pincode</th>
+          </tr>
+          <tr *ngFor="let office of selectedItems">
+            <td>{{ office.Name }}</td>
+            <td>{{ office.District}}</td>
+            <td>{{ office.Region }}</td>
+            <td>{{ office.State }}</td>
+            <td>{{ office.Country }}</td>
+            <td>{{ office.Pincode }}</td>
+           </tr>
+        </table>
+    </div>
+    <ng-container *ngIf="!userId">
+    <div class="row my-3 justify-content-center">
+      <div class="col-md-3 mb-3 mb-md-0">
+        Don't have UserId?
+      </div>
+      <div class="col-md-2">
+        <button class="btn-primary"  (click)="openModal()" id="createBtn">Create</button>
+      </div>
+    </div>  
+  </ng-container>
+</div>
+<div class="modal" id="userIdCreateModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Create UserId</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closeModal()"></button>
+      </div>
+      <div class="modal-body">
+        <div class="input-group mb-3">
+          <input  type="text" class="form-control" placeholder="Enter User Id" name="userId" [(ngModel)]="userId" minlength="4" maxlength="12">
+          <button class="btn btn-primary" type="button" (click)="saveModal()">Save</button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary"  data-bs-dismiss="modal" (click)="clear()">Clear</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="closeModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="edited" class="alert alert-success box-msg" role="alert">
+  <strong>List Saved!</strong> Your changes has been saved.
+</div>
+</body>

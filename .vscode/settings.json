@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/252ca3ed-795c-44ab-8de1-89d43d2d9d75/resourceGroups/compractice-azure/providers/Microsoft.Web/sites/pin-service",
+    "appService.deploySubpath": "dist"
+}
